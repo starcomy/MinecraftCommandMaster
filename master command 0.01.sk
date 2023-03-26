@@ -1,0 +1,66 @@
+command /mc [<text>] [<text>] [<text>] [<text>] [<text>]:
+    trigger:
+        if player is op:
+            if arg 1 is "-event":
+                if arg 2 is "-join":
+                    if arg 3 is "title":
+                        set {jointitle} to arg 4
+                        set {color:title} to arg 5
+                        message "&aedit to script"
+                        
+        else:
+            message "&4your not admin"
+
+
+
+ 
+command /mcremove [<text>]:
+    trigger:
+        if player is op:
+            if arg 1 is "title":
+                delete {jointitle}
+                delete {color:title}
+                message "&bremove to script"
+ 
+on join:
+    if {jointitle} is set:
+        if {color:title} is set:
+            if {color:title} is "red":
+                send title "&4%{jointitle}%" to player for 2 seconds
+            if {color:title} is "yellow":
+                send title "&e%{jointitle}%" to player for 2 seconds
+            if {color:title} is "green":
+                send title "&a%{jointitle}%" to player for 2 seconds
+            if {color:title} is "blue":
+                send title "&1%{jointitle}%" to player for 2 seconds
+            if {color:title} is "aqua":
+                send title "&b%{jointitle}%" to player for 2 seconds
+        else:
+            send title "%{jointitle}%" to player for 2 seconds
+
+
+on chat:
+    if player is op:
+        if chat message contains "?jointitle":
+            cancel event
+            message "&5current title : &l%{jointitle}%"
+            message "&5title color : &l%{color:title}%"
+
+on chat:   
+    if player is op:
+        if chat message contains "@jointitle":
+            cancel event
+            if {jointitle} is set:
+                if {color:title} is set:
+                    if {color:title} is "red":
+                        send title "&4%{jointitle}%" to player for 2 seconds
+                    if {color:title} is "yellow":
+                        send title "&e%{jointitle}%" to player for 2 seconds
+                    if {color:title} is "green":
+                        send title "&a%{jointitle}%" to player for 2 seconds
+                    if {color:title} is "blue":
+                        send title "&1%{jointitle}%" to player for 2 seconds
+                    if {color:title} is "aqua":
+                        send title "&b%{jointitle}%" to player for 2 seconds
+                else:
+                    send title "%{jointitle}%" to player for 2 seconds
